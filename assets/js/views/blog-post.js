@@ -46,15 +46,6 @@ if (vplayer.length > 0) {
                         this.appendChild(iframe);
                     }
                     break;
-                case "pornhub":
-                    const iframe = document.createElement("iframe");
-                    iframe.setAttribute("allowfullscreen", "");
-                    iframe.setAttribute("scrolling", "no");
-                    iframe.setAttribute("frameborder", "0");
-                    iframe.setAttribute("src", url);
-
-                    this.innerHTML = "";
-                    this.appendChild(iframe);
             }
         });
     };
