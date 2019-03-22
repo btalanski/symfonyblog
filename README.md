@@ -1,10 +1,10 @@
-#Symfony 4 blog
+# Symfony 4 blog
 This is just a simple CRUD app developed using Symfony 4 as a study to learn the basics about the Symfony framework. 
 
 This should not be taken seriously for now but I intend to keep adding more functionalities to it as I continue to explore the framework.
 
 
-###To do list
+### To do list
 
 - [ ] Make installation user-friendly
 - [ ] Improve post management
@@ -17,9 +17,9 @@ This should not be taken seriously for now but I intend to keep adding more func
 - [x] Set SASS variables using webpack
 
 
-##Useful commands
+## Useful commands
 
-###Doctrine
+### Doctrine
 
 ```
 # update migration
