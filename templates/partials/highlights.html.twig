@@ -1,0 +1,27 @@
+{% block highlights %}
+<section class="highlights section-block">
+    <header>
+        <h1 class="title">Destaques</h1>
+    </header>
+    <div class="glide slides">
+        <div class="glide__track" data-glide-el="track">
+            <ul class="glide__slides">
+                {% for slide in slides %}
+                <li class="glide__slide">
+                    <div class="slide-item">
+                        <img src="{{slide.src}}" />
+                        <div class="caption">
+                            <a href="#">{{slide.caption}}</a>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="glide__arrows" data-glide-el="controls">
+            <button class="glide__arrow glide__arrow--left" data-glide-dir="<">Anterior</button>
+            <button class="glide__arrow glide__arrow--right" data-glide-dir=">">Próximo</button>
+        </div>
+    </div>
+</section>
+{% endblock %}

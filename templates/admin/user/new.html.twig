@@ -1,0 +1,14 @@
+{% form_theme form 'admin/form/admin.html.twig' %}
+
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Add new user{% endblock %}
+
+{% block body %}
+<section class="section">
+    <div class="container">
+        <h1 class="title">Add new user</h1>
+        {{ form(form) }}
+    </div> 
+</section>
+{% endblock %}

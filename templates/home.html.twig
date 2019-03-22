@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<main class="container">
+    <div class="main-content">
+
+        {% if slides is defined and slides|length > 0 %}
+            {{ include('partials/highlights.html.twig') }}
+        {% endif %}
+
+
+        {% block posts%}
+            {% if posts|length > 0 %}
+                <section class="post-collection section-block">
+                    <header><h1 class="title">Artigos</h1></header>
+                    {% for posts_row in posts|batch(3) %}
+                        <div class="columns">
+                            {{ include('partials/post-collection.html.twig') }}
+                        </div>
+                    {% endfor %}
+                    <a class="button is-large is-default" href="{{ path('blog_index')}}">Ver mais</a>
+                </section>
+            {% endif %}
+        {% endblock %}
+
+    </div>
+</main>
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('home.js', 'frontend') }}"></script>
+{% endblock %}

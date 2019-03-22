@@ -1,0 +1,40 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Posts{% endblock %}
+
+{% block body %}
+<section class="section">
+    <div class="container">
+        <h1 class="title">Posts</h1>
+        {% if posts|length > 0 %}
+
+        <table class="table is-striped is-fullwidth">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th>Author</th>
+                    <th>Created</th>
+                    <th>Updated</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in posts %}
+                <tr>
+                    <th>{{post.id}}</th>
+                    <td>{{post.title}}</td>
+                    <td>{{post.published ? "Published" : "Draft"}}</td>
+                    <td>Eu</td>
+                    <td>{{ post.createDateTime|date('d/m/Y', "Europe/Paris") }}</td>
+                    <td>{{ post.lastUpdateDateTime|date('d/m/Y', "Europe/Paris") }}</td>                    
+                    <td><a class="button" href="{{ path('post_edit', {id: post.id})}}">Edit</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

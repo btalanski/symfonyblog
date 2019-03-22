@@ -1,0 +1,21 @@
+<div class="recent_posts">
+    <h1 class="title is-4">Veja também</h1>
+    {% for post in recent_posts %}
+    <article class="card post">
+        <a href="{{ path('blog_post', {id: post.id, slug: post.slug})}}"></a>
+        <div class="card-image">
+            <figure class="image is-16by9">
+                {% if post.media is defined %}
+                {% set base_url = post.media.fileName ~ "." ~ post.media.fileExtension %}
+                <img alt="Placeholder image" src="{{asset(base_url, 'uploads')}}" />
+                {% else %}
+                <img alt="Placeholder image" src="https://picsum.photos/1280/400" />
+                {% endif %}
+            </figure>
+        </div>
+        <div class="card-content">
+            <a href="{{ path('blog_post', {id: post.id, slug: post.slug})}}">{{post.title}}</a>
+        </div>
+    </article>
+    {% endfor %}
+</div>

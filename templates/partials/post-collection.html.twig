@@ -1,0 +1,24 @@
+{% for post in posts_row %}
+<div class="column is-one-third">
+    <article class="post-card">
+        {% set base_url = "https://picsum.photos/1280/400" %}
+        {% if post.media is defined and post.media.fileName is defined %}
+        {% set base_url = post.media.fileName ~ "_post_highlight." ~ post.media.fileExtension %}
+        {% endif %}
+        <a href="{{path('blog_post', {id: post.id, slug: post.slug})}}">
+            <div class="bg">
+                <figure class="image is-16by9">
+                    <img src="{{asset(base_url, 'uploads')}}" />
+                </figure>
+                <div class="content">
+                    <span class="title">{{post.title}}</span>
+                    <span class="meta">
+                        {% if post.tag is not null %}{{ post.tag }} | {% endif %}
+                        {{ post.createDateTime|date('d/m/Y', "Europe/Paris") }}
+                    </span>
+                </div>
+            </div>
+        </a>
+    </article>
+</div>
+{% endfor %}

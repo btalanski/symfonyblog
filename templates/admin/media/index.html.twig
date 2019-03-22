@@ -1,0 +1,29 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Media{% endblock %}
+
+{% block body %}
+<section class="section">
+    <div class="container">
+        <h1 class="title">Media</h1>
+        {% if media|length > 0 %}
+        {% for media_row in media|batch(5) %}
+        <div class="columns">
+            {% for m in media_row %}
+            {% set url = m.fileName ~ "_thumb." ~ m.fileExtension %}
+            <div class="column is-one-fifth">
+                <div class="media-item">
+                    <a href="{{ path('media_edit', {id: m.id})}}"></a>
+                    <figure class="image is-16by9">
+                        <img src="{{asset(url, 'uploads')}}" />
+                    </figure>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

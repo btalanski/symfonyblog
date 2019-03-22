@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{category.name}}{% endblock %}
+
+{% block metatags %}
+<meta property="og:title" content="{{category.name|default("")}}" />
+<meta name="description" content="{{category.description|default("")}}" />
+<meta name="keywords" content="{{category.keywords|default("")}}" />
+{% endblock %}
+
+{% block header_bg %}{% endblock %}
+
+{% block body %}
+<main class="container blog-category">
+    <div class="main-content">
+        <section class="section-block">
+            <header class="has-border">
+                <h1 class="title is-spaced">{{category.name}}</h1>
+                {% if category.description is defined %}
+                <p>{{category.description}}</p>
+                {% endif %}
+            </header>
+            <div>
+                {% if posts|length > 0 %}
+                <section class="post-collection section-block">
+                    {% for posts_row in posts|batch(3) %}
+                    <div class="columns">
+                        {{ include('partials/post-collection.html.twig') }}
+                    </div>
+                    {% endfor %}
+
+                    <nav class="pagination" role="navigation" aria-label="pagination">
+                        <ul class="pagination-list">
+                            {% for i in 1..total_pages %}
+                            <li>
+                                <a href="{{ path('blog_category', {'slug': category.slug, 'page': loop.index}) }}"
+                                class="pagination-link {{(page == loop.index) ? 'is-current' : '' }}" aria-label="Página {{loop.index}}" {{(page == loop.index) ? 'aria-current="page"' : '' }}>{{loop.index}}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </nav>
+
+                </section>
+                {% endif %}
+            </div>
+        </section>
+    </div>
+</main>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('blog-post.js', 'frontend') }}"></script>
+{% endblock %}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-bottom">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}{% endblock %}</title>
+    {% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('vendor.css', 'frontend') }}">
+    {% endblock %}
+
+</head>
+
+<body>
+    {% block header %}
+    <section class="main-header">
+        {% block main_menu %}
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+                        data-target="navbarBasicExample">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+
+                <div id="navbarBasicExample" class="navbar-menu">
+                    <div class="navbar-start">
+                        <a class="navbar-item" href="/">Home</a>
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a class="navbar-link" href="{{path('category_index')}}">Categories</a>
+                            <div class="navbar-dropdown">
+                                <a class="navbar-item" href="{{path('category_new')}}">Add new</a>
+                            </div>
+                        </div>
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a class="navbar-link" href="{{path('post_index')}}">Posts</a>
+                            <div class="navbar-dropdown">
+                                <a class="navbar-item" href="{{path('post_new')}}">Add new</a>
+                            </div>
+                        </div>
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a class="navbar-link" href="{{path('user_index')}}">Users</a>
+                            <div class="navbar-dropdown">
+                                <a class="navbar-item" href="{{path('user_new')}}">Add new</a>
+                            </div>
+                        </div>
+                        <div class="navbar-item has-dropdown is-hoverable">
+                                <a class="navbar-link" href="{{path('media_index')}}">Media</a>
+                                <div class="navbar-dropdown">
+                                    <a class="navbar-item" href="{{path('media_new')}}">Add new</a>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        {% endblock %}
+    </section>
+    {% endblock %}
+
+
+    <section class="admin">
+        {% block body %}{% endblock %}
+    </section>
+
+    {% block footer %}
+    <footer class="main-footer">
+        <nav class="navbar is-fixed-bottom" role="navigation" aria-label="footer navigation">
+            <div class="container">
+                <div class="navbar-menu">
+                    <div class="navbar-start">
+                        <a class="navbar-item">
+                            Web Admin
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </footer>
+    {% endblock %}
+
+    {% block javascripts %}
+    <script src="{{ asset('runtime.js', 'frontend') }}"></script>
+    <script src="{{ asset('vendor.js', 'frontend') }}"></script>
+    <script src="{{ asset('app.js', 'frontend') }}"></script>
+    {% endblock %}
+</body>
+
+</html>

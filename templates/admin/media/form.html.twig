@@ -1,0 +1,28 @@
+{% form_theme form 'admin/form/admin.html.twig' %}
+
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block body %}
+<section class="section">
+    <div class="container">
+        <h1 class="title">{{title}}</h1>
+        {% if media is defined %}
+            {% set url = media.fileName ~ "." ~ media.fileExtension %}
+            <figure class="image is-16by9">
+                <img src="{{asset(url, 'uploads')}}" />
+            </figure>
+            <div class="content has-text-centered">
+                <pre><code>[i src="{{url}}" alt="{{media.description}}"]</code></pre>
+            </div>
+        {% endif %}
+        {{ form(form) }}
+    </div>
+</section>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('editor.js', 'frontend') }}"></script>
+{% endblock %}

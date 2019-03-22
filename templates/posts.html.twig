@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Índice{% endblock %}
+
+{% block metatags %}
+<meta property="og:title" content="Índice" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+{% endblock %}
+
+{% block body %}
+<main class="container blog-category">
+    <div class="main-content">
+        <section class="section-block">
+            <header class="has-border">
+                <h1 class="title is-spaced">Todos os artigos</h1>
+            </header>
+            <div>
+                {% if posts|length > 0 %}
+                <section class="post-collection section-block">
+                    {% for posts_row in posts|batch(3) %}
+                    <div class="columns">
+                        {{ include('partials/post-collection.html.twig') }}
+                    </div>
+                    {% endfor %}
+
+                    <nav class="pagination" role="navigation" aria-label="pagination">
+                        <ul class="pagination-list">
+                            {% for i in 1..total_pages %}
+                            <li>
+                                <a href="{{ path('blog_index', {'page': loop.index}) }}"
+                                class="pagination-link {{(page == loop.index) ? 'is-current' : '' }}" aria-label="Página {{loop.index}}" {{(page == loop.index) ? 'aria-current="page"' : '' }}>{{loop.index}}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </nav>
+
+                </section>
+                {% endif %}
+            </div>
+        </section>
+    </div>
+</main>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('blog-post.js', 'frontend') }}"></script>
+{% endblock %}

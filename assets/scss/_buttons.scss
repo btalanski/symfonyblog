@@ -1,0 +1,6 @@
+.button{
+    &.is-default{
+        background-color: $primaryColor;
+        color: #fff;
+    }
+}

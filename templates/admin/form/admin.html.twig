@@ -1,0 +1,110 @@
+{# Check the page for basic form elements logic #}
+{# https://github.com/symfony/symfony/blob/master/src/Symfony/Bridge/Twig/Resources/views/Form/form_div_layout.html.twig #}
+
+{% extends 'form_div_layout.html.twig' %}
+
+{%- block form_row -%}
+    {%- set widget_attr = {} -%}
+    {%- if help is not empty -%}
+        {%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}
+    {%- endif -%}
+    <div class="field">
+        {{- form_label(form) -}}
+        {{- form_widget(form, widget_attr) -}}
+        {{- form_help(form) -}}
+        {{- form_errors(form) -}}
+    </div>
+{%- endblock form_row -%}
+
+{%- block form_label -%}
+    {%- set type = type|default('text') -%}
+    {%- if type == 'checkbox' -%}
+        cu
+    {%- else -%}
+        {% set label_attr = label_attr|merge({'class': 'label'}) %}
+        {{parent()}}
+    {%- endif -%}
+{%- endblock form_label -%}
+
+{%- block form_widget -%}
+    <div class="control">{{ parent() }}</div>
+{%- endblock form_widget -%}
+
+{%- block widget_attributes -%}
+    {% set _class = '' %}
+    
+    {%- set type = type|default('text') -%}
+    {%- if type == 'text' or type == 'email' or type == 'password' -%}
+        {% set _class = _class ~ ' input' %}
+    {%- elseif type == 'textarea' -%}
+        {% set _class = _class ~ ' textarea' %}
+    {%- elseif type == 'textarea-editor' -%}
+        {% set _class = _class ~ ' is-display-none' %}
+    {%- elseif type == 'checkbox' -%}
+        {% set _class = '' %}
+    {%- endif -%}
+    
+    {% if errors|length > 0 %}
+        {% set _class = _class ~ ' is-danger' %}
+        {% if attr.class is defined %}
+           {% set _class = _class ~ ' ' ~ attr.class|trim %}
+        {% endif %}
+    {% endif %}
+
+    {% set attr = attr|merge({'class': _class}) %}
+    {{ parent() }}
+{%- endblock widget_attributes -%}
+
+{%- block button_row -%}
+    <div class="field">{{ parent() }}</div>
+{%- endblock button_row -%}
+
+{%- block button_widget -%}
+    <div class="control">{{ parent() }}</div>
+{%- endblock button_widget -%}
+
+{%- block button_attributes -%}
+    class="button"
+    {{ parent() }}
+{%- endblock button_attributes -%}
+
+{%- block textarea_widget -%}
+    {%- set type = "textarea" -%}
+    <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
+{%- endblock textarea_widget -%}
+
+{%- block choice_widget -%}
+    {% if multiple %}
+        <div class="select is-multiple is-fullwidth">
+    {% else %}
+        <div class="select is-fullwidth">
+    {% endif %}
+        {{ parent()}}
+    </div>
+{%- endblock choice_widget -%}
+
+{%- block form_errors -%}
+    {%- if errors|length > 0 -%}
+        {%- for error in errors -%}
+            <p class="help is-danger">{{ error.message }}</p>
+        {%- endfor -%}
+    {%- endif -%}
+{%- endblock form_errors -%}
+
+{%- block markdown_editor_widget -%}
+        {%- set type = "textarea-editor" -%}
+        <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
+        <div id="markdown_editor" data-target="{%- if full_name is defined -%}{{full_name}}{% endif %}"></div>
+{%- endblock markdown_editor_widget -%}
+
+
+{%- block checkbox_widget -%}
+    {%- set type = type|default('checkbox') -%}
+    {%- set required = required|default(false) -%}
+    <div class="control">
+        <label class="checkbox">
+            <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+            {{label}}
+        </label>
+    </div>
+{%- endblock checkbox_widget -%}

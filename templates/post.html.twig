@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{post.title}}{% endblock %}
+
+{% block metatags %}
+<meta property="og:title" content="{{post.title|default("")}}" />
+{% if media is not null %}
+{% set highlight_image_file = media.fileName ~ "." ~ media.fileExtension %}
+<meta property="og:image" content="{{asset(highlight_image_file, 'uploads')}}" />
+{% endif %}
+<meta name="description" content="{{post.excerpt|default("")}}" />
+<meta name="keywords" content="{{post.keywords|default("")}}" />
+{% endblock %}
+
+{% block header %}
+{{ include('partials/basic-header.html.twig') }}
+{% endblock %}
+
+{% block body %}
+<main class="container blog-post">
+    <div class="main-content">
+        <section class="section-block">
+            <article class="post">
+                <header>
+                    <h1 class="title is-1">{{post.title}}</h1>
+                    <div class="post-meta">
+                        <time datetime="{{ post.createDateTime|date('Y-m-d', "Europe/Paris") }}" pubdate>
+                            {{ post.createDateTime|date('d/m/Y', "Europe/Paris") }}
+                        </time>
+                    </div>
+                    {% if media is not null %}
+                    <figure class="image is-16by9">
+                            {% set base_url = media.fileName ~ "." ~ media.fileExtension %}
+                            <img alt="Placeholder image" src="{{asset(base_url, 'uploads')}}" />
+                        </figure>
+                    {% endif %}
+                </header>
+                <div class="content">
+                    {{ post.text|shortcodes|markdown }}
+                </div>
+                <footer>
+                    <span class="has-text-weight-semibold">Categorias:</span>
+                    {% for category in post_categories %}
+                    <a href="{{ path('blog_category', {slug: category.slug})}}">{{category.name}}</a>
+                    {% if loop.last %}
+                    {% else %},{% endif %}
+                    {% endfor %}
+                    {{ include('partials/share-post.html.twig') }}
+                </footer>
+                <aside>
+                    <article class="message is-danger">
+                        <div class="message-header">
+                            <p>Reportar conteúdo</p>
+                        </div>
+                        <div class="message-body">
+                            <div class="content">
+                                <p>Caso esse artigo inclua algum dos itens abaixo, entre em contato conosco.</p>
+                                <ul>
+                                    <li>Violação de direitos autorais</li>
+                                    <li>Pedofilia</li>
+                                    <li>Crimes e violência</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+                </aside>
+            </article>
+            {% if posts|length > 0 %}
+                <aside class="section-block post-aside post-collection">
+                    <header><h1 class="title">Veja também</h1></header>
+                    {% for posts_row in posts|batch(3) %}
+                        <div class="columns">
+                            {{ include('partials/post-collection.html.twig') }}
+                        </div>
+                    {% endfor %}
+                    <a class="button is-default">Ver mais</a>
+                </aside>
+            {% endif %}
+        </section>
+    </div>
+</main>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('blog-post.js', 'frontend') }}"></script>
+{% endblock %}

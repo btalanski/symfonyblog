@@ -1,0 +1,40 @@
+@import "~tiny-slider/src/tiny-slider.scss"; 
+/* http://ganlanyuan.github.io/tiny-slider/demo */
+
+@import "~@glidejs/glide/src/assets/sass/glide.core";
+@import "~@glidejs/glide/src/assets/sass/glide.theme";
+
+.slides{
+
+    .slide-item{
+        position: relative;
+
+        &:hover img{
+            -moz-transform: scale(1.1);
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+
+        img{
+            width: 100%;
+            display: block;
+            -moz-transition: all 0.3s;
+            -webkit-transition: all 0.3s;
+            transition: all 0.3s;
+        }
+
+        .caption{
+            position: absolute;
+            bottom:0;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1rem;
+            width: 100%;
+
+            &> * {
+                color: #fff;
+                font-size: 1.1rem;
+                text-shadow: 1px 2px 3px #000;
+            }
+        }
+    }
+}

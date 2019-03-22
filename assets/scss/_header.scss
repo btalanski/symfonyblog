@@ -1,0 +1,46 @@
+.video-bg {
+    min-width: 960px;
+    height: 500px;
+    z-index: 10;
+}
+
+.main-header,
+.main-footer {
+    background-color: $darkShade;
+    color: #fff;
+    .site-name {
+        padding: 1rem 0;
+    }
+    .navbar {
+        background-color: $darkShade;
+        a {
+            color: #fff !important;
+
+            &.navbar-item:hover{
+                background-color: darken($primaryColor, 5%);
+            }
+        }
+
+        .navbar-item {
+            .navbar-link:hover,
+            .navbar-dropdown,
+            &.has-dropdown:hover .navbar-link {
+                background-color: darken($primaryColor, 5%);
+            }
+            .navbar-dropdown {
+                border: 0;
+                .navbar-item:hover {
+                    background-color: $primaryColor;
+                }
+            }
+        }
+
+        .navbar-link:not(.is-arrowless):after{
+            border-color: #fff;
+        }
+    }
+}
+
+.navbar-menu{
+    background: none!important;
+}

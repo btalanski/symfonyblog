@@ -1,0 +1,33 @@
+.brand{
+    font-family: 'Oleo Script Swash Caps', cursive;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.main-content {
+    padding: 1rem 0;
+
+    @media screen and (max-width: 1088px){
+        margin: auto 32px;
+    }
+}
+
+.section-block{
+    margin: 1rem 0;
+
+    header {
+        &.has-border{
+            padding-bottom: .5rem;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 1rem;
+        }
+        > h1{
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+.pagination-link.is-current{
+    background-color: $primaryColor;
+    border-color: $primaryColor;
+}
