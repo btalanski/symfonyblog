@@ -1,11 +1,10 @@
 {
   "runtime.js": "/assets/runtime.a4b31.bundle.js",
-  "vendor.css": "/assets/vendor.6e5a3.css",
-  "vendor.js": "/assets/vendor.6e5a3.bundle.js",
-  "app.js": "/assets/app.3d71b.bundle.js",
-  "blog-post.js": "/assets/blog-post.5a471.bundle.js",
-  "editor.js": "/assets/editor.aecc2.bundle.js",
-  "home.js": "/assets/home.569ea.bundle.js",
+  "vendor.css": "/assets/vendor.070ad.css",
+  "vendor.js": "/assets/vendor.070ad.bundle.js",
+  "app.js": "/assets/app.44420.bundle.js",
+  "blog-post.js": "/assets/blog-post.7713f.bundle.js",
+  "editor.js": "/assets/editor.64721.bundle.js",
   "../tui-editor-2x.png": "/assets/../tui-editor-2x.png",
   "../tui-editor.png": "/assets/../tui-editor.png"
 }

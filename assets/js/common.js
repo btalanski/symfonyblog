@@ -1,21 +1,13 @@
-import JVideoBackground from "./libs/video-bg";
+import Glide from '@glidejs/glide'
 
 
-$.fn.J_video_background = JVideoBackground;
-
-const videoBackground = new $.fn.J_video_background({
-    $el: $('.video-bg'),
-    src: 'assets/videos/bg.mp4'
+$(".navbar-burger").click(function () {
+    $(".navbar-burger").toggleClass("is-active");
+    $(".navbar-menu").toggleClass("is-active");
 });
 
-$(document).ready(function() {
+const slider = document.querySelectorAll(".glide");
+if (slider.length > 0) {
+    new Glide('.glide').mount()
+}
 
-    // Check for click events on the navbar burger icon
-    $(".navbar-burger").click(function() {
-  
-        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-        $(".navbar-burger").toggleClass("is-active");
-        $(".navbar-menu").toggleClass("is-active");
-  
-    });
-  });

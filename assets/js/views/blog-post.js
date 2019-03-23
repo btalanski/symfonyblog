@@ -1,16 +1,9 @@
 import "rrssb/js/rrssb.min.js";
-import Glide from '@glidejs/glide'
-
 
 $('.rrssb-buttons').rrssb({
     title: $('.rrssb-buttons').data('title'),
     url: $('.rrssb-buttons').data('url'),
 });
-
-const slider = document.querySelectorAll(".glide");
-if (slider.length > 0) {
-    new Glide('.glide').mount();
-}
 
 const vplayer = document.querySelectorAll(".vplayer");
 if (vplayer.length > 0) {

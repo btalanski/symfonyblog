@@ -97,7 +97,6 @@ module.exports = (env, argv) => {
                 path.join(__dirname, "assets/scss", "index.scss"),
             ],
             "blog-post": path.join(__dirname, "assets/js/views", "blog-post.js"),
-            "home": path.join(__dirname, "assets/js/views", "home.js"),
             "editor": path.join(__dirname, "assets/js/components", "editor.js"),
         },
         output: {
@@ -201,7 +200,7 @@ module.exports = (env, argv) => {
             new MiniCssExtractPlugin({
                 filename: "[name].[chunkhash:5].css",
             }),
-            // new BundleAnalyzerPlugin(),
+            new BundleAnalyzerPlugin(),
             new webpack.ProvidePlugin({
                 $: 'jquery',
                 jQuery: 'jquery',
